@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#72b8fe"
+    android:background="#000000"
     android:src="@drawable/load_screen"
     tools:context="com.throwntech.overwatch.MainActivity">
 
