@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "314511223383",
+    "firebase_url": "https://overwatch-sec.firebaseio.com",
+    "project_id": "overwatch-sec",
+    "storage_bucket": "overwatch-sec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:314511223383:android:b8c771f5aadc34d82d5112",
+        "android_client_info": {
+          "package_name": "com.throwntech.overwatch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "314511223383-nc5grvpfnb9g4bue69shsfv7pavvpon8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLXV24FLKMxSrCABVSQyVRm7tKo4gm1Ak"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "314511223383-nc5grvpfnb9g4bue69shsfv7pavvpon8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
