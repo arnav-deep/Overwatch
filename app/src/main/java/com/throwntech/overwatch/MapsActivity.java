@@ -7,11 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,10 +30,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import org.w3c.dom.Text;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -48,7 +43,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 0;
 
     private double currLat, currLng;
-    private String bpm, temperature;
+    private String bpm, temperature, preTime;
     private LatLng currLoc;
 
     TextView lastUpdated, lastBpm, lastTemp;
@@ -56,6 +51,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     Button sos, getData;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,24 +73,41 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         }
 
-//        showCurrData();
-//
-//        lastUpdated = (TextView)findViewById(R.id.last_updated);
-//        lastBpm = (TextView)findViewById(R.id.last_bpm);
-//        lastTemp = (TextView)findViewById(R.id.last_temp);
+        lastUpdated = (TextView)findViewById(R.id.last_updated);
+        lastBpm = (TextView)findViewById(R.id.last_bpm);
+        lastTemp = (TextView)findViewById(R.id.last_temp);
 
-//        sos = findViewById(R.id.sos_button);
-//
-//        sos.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String sms = "sos";
-//                String phoneNum = "+919664624488";
-//
-//                SmsManager smsManager = SmsManager.getDefault();
-//                smsManager.sendTextMessage(phoneNum, null, sms, null, null);
-//            }
-//        });
+        cardView = findViewById(R.id.card_view);
+
+        initDetail();
+        showCurrData();
+        cardView.setVisibility(View.VISIBLE);
+
+        sos = findViewById(R.id.sos_button);
+
+        sos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String sms = "sos";
+                String phoneNum = "+919664624488";
+
+                SmsManager smsManager = SmsManager.getDefault();
+                smsManager.sendTextMessage(phoneNum, null, sms, null, null);
+            }
+        });
+
+        getData = findViewById(R.id.getData);
+
+        getData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String sms = "update";
+                String phoneNum = "+919664624488";
+
+                SmsManager smsManager = SmsManager.getDefault();
+                smsManager.sendTextMessage(phoneNum, null, sms, null, null);
+            }
+        });
     }
 
     @Override
@@ -159,14 +172,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             }
 
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 bpm = dataSnapshot.child("Bpm").getValue().toString();
                 currLat = (Double) dataSnapshot.child("Lat").getValue();
                 currLng = (Double) dataSnapshot.child("Lng").getValue();
-                temperature = (String) dataSnapshot.child("Temp").getValue().toString();
+                temperature = dataSnapshot.child("Temp").getValue().toString();
                 goToCurrLatLng(currLat, currLng);
-//                showCurrData();
+                showCurrData();
             }
 
             @Override
@@ -186,14 +200,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
     }
 
-//    @RequiresApi(api = Build.VERSION_CODES.O)
-//    private void showCurrData() {
-//        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
-//        LocalDateTime currTime = LocalDateTime.now();
-//        String preTime = dtf.format(currTime);
-//
-//        lastUpdated.setText(preTime);
-//        lastBpm.setText(bpm);
-//        lastTemp.setText(temperature);
-//    }
+    public void showCurrData() {
+
+        SimpleDateFormat formatter= new SimpleDateFormat("HH:mm");
+        Date date = new Date(System.currentTimeMillis());
+
+        preTime = formatter.format(date).toString();
+        Log.i(TAG, "time is: " +  preTime);
+        lastUpdated.setText(preTime);
+        lastBpm.setText(bpm);
+        lastTemp.setText(temperature);
+    }
 }

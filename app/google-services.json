@@ -8,12 +8,49 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:314511223383:android:b8c771f5aadc34d82d5112",
+        "mobilesdk_app_id": "1:314511223383:android:1f9a82902ec039bd2d5112",
         "android_client_info": {
           "package_name": "com.throwntech.overwatch"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "314511223383-nc5grvpfnb9g4bue69shsfv7pavvpon8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLXV24FLKMxSrCABVSQyVRm7tKo4gm1Ak"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "314511223383-nc5grvpfnb9g4bue69shsfv7pavvpon8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:314511223383:android:38e0e087d91cd3472d5112",
+        "android_client_info": {
+          "package_name": "com.throwntech.staysafe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "314511223383-gor142qlqsqqe5l6vurhnv0obfonjek1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.throwntech.staysafe",
+            "certificate_hash": "72a317724275eff892eef7cce6a920e9291cd9ab"
+          }
+        },
         {
           "client_id": "314511223383-nc5grvpfnb9g4bue69shsfv7pavvpon8.apps.googleusercontent.com",
           "client_type": 3

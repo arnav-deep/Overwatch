@@ -32,91 +32,95 @@
             android:layout_marginTop="5dp">
 
             <TextView
-                android:id="@+id/judgement_card"
+                android:id="@+id/heading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textColor="#4F5C9B"
                 android:textSize="22sp"
+                android:text="@string/details_HEAD"
                 android:gravity="center_horizontal" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/judgement_card"
+                android:layout_below="@id/heading"
+                android:paddingTop="30dp"
                 android:orientation="horizontal"
                 android:weightSum="10">
 
                 <TextView
-                    android:id="@+id/area_title_card"
+                    android:id="@+id/bpm"
                     android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
                     android:layout_weight="3.33"
-                    android:layout_height="29dp"
-                    android:layout_marginTop="10dp"
                     android:textAlignment="center"
-                    android:textSize="16sp"
-                    android:text="Area"
+                    android:textSize="13sp"
+                    android:text="@string/heart_rate"
                     android:gravity="center_horizontal" />
 
                 <TextView
-                    android:id="@+id/id_title_card"
+                    android:id="@+id/Temp"
                     android:layout_width="0dp"
                     android:layout_weight="3.33"
-                    android:layout_height="29dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
                     android:textAlignment="center"
-                    android:textSize="16sp"
-                    android:text="Heart Rate"
+                    android:textSize="13sp"
+                    android:text="@string/temperature"
                     android:gravity="center_horizontal" />
 
                 <TextView
-                    android:id="@+id/temp_title_card"
+                    android:id="@+id/Updated"
                     android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
                     android:layout_weight="3.33"
-                    android:layout_height="29dp"
-                    android:layout_marginTop="10dp"
                     android:textAlignment="center"
-                    android:textSize="16sp"
-                    android:text="Temperature"
+                    android:textSize="13sp"
+                    android:text="@string/last_updated"
                     android:gravity="center_horizontal" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/judgement_card"
-                android:paddingTop="30dp"
+                android:layout_below="@id/heading"
                 android:orientation="horizontal"
                 android:weightSum="10">
 
                 <TextView
-                    android:id="@+id/area_card"
+                    android:id="@+id/last_bpm"
                     android:layout_width="0dp"
-                    android:layout_height="29dp"
-                    android:layout_marginTop="2dp"
                     android:layout_weight="3.33"
+                    android:layout_height="29dp"
+                    android:layout_marginTop="10dp"
                     android:textAlignment="center"
-                    android:textSize="13sp"
+                    android:textSize="16sp"
+                    android:text="."
                     android:gravity="center_horizontal" />
 
                 <TextView
-                    android:id="@+id/id_card"
+                    android:id="@+id/last_temp"
                     android:layout_width="0dp"
                     android:layout_weight="3.33"
                     android:layout_height="29dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="10dp"
                     android:textAlignment="center"
-                    android:textSize="13sp"
+                    android:textSize="16sp"
+                    android:text="."
                     android:gravity="center_horizontal" />
 
                 <TextView
-                    android:id="@+id/temp_card"
+                    android:id="@+id/last_updated"
                     android:layout_width="0dp"
-                    android:layout_height="29dp"
-                    android:layout_marginTop="2dp"
                     android:layout_weight="3.33"
+                    android:layout_height="29dp"
+                    android:layout_marginTop="10dp"
                     android:textAlignment="center"
-                    android:textSize="13sp"
+                    android:textSize="16sp"
+                    android:text="."
                     android:gravity="center_horizontal" />
             </LinearLayout>
 
@@ -129,38 +133,28 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/sos_button"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="5dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="70dp"
             android:layout_marginBottom="50dp"
-            android:background="@color/colorAccent"
+            android:background="#03BBBB"
             android:text="@string/sos" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/getData"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="70dp"
             android:layout_marginBottom="50dp"
-            android:background="@color/colorAccent"
+            android:background="#03BBBB"
             android:text="@string/details" />
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="140dp"
-            android:layout_marginRight="140dp"
-            android:layout_marginBottom="50dp"
-            android:background="@color/colorAccent"
-            android:text="@string/temperature" />
 
     </RelativeLayout>
 

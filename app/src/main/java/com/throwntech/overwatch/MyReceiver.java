@@ -52,8 +52,8 @@ public class MyReceiver extends BroadcastReceiver {
                     phoneNo = message[i].getOriginatingAddress();
                 }
 
-                if (phoneNo.equals("+919913383342")) {
-//                    Toast.makeText(context, "Message: " + msg + "\n Number: " + phoneNo, Toast.LENGTH_LONG).show();
+                if (/*phoneNo.equals("+917785959692")*/true) {
+                    Toast.makeText(context, "Message: " + msg + "\n Number: " + phoneNo, Toast.LENGTH_LONG).show();
 
                     List<String> allData = Arrays.asList(msg.split(" ", 3));
                     List<String> indData = new ArrayList<>();
