@@ -2,4 +2,6 @@
     <string name="app_name">Overwatch</string>
     <string name="title_activity_maps">Map</string>
     <string name="sos">SOS</string>
+    <string name="details">Details</string>
+    <string name="temperature">Temperature</string>
 </resources>
