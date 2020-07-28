@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -29,6 +30,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -45,8 +47,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private double currLat, currLng;
     private String bpm, temperature, preTime;
     private LatLng currLoc;
+    private int health = 1;
 
-    TextView lastUpdated, lastBpm, lastTemp;
+    TextView lastUpdated, lastBpm, lastTemp, lastHealth;
     private CardView cardView;
 
     Button sos, getData;
@@ -76,12 +79,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         lastUpdated = (TextView)findViewById(R.id.last_updated);
         lastBpm = (TextView)findViewById(R.id.last_bpm);
         lastTemp = (TextView)findViewById(R.id.last_temp);
+        lastHealth = (TextView)findViewById(R.id.heading);
 
         cardView = findViewById(R.id.card_view);
 
-        initDetail();
+//        initDetail();
+        updateDetail();
         showCurrData();
-        cardView.setVisibility(View.VISIBLE);
 
         sos = findViewById(R.id.sos_button);
 
@@ -93,6 +97,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                 SmsManager smsManager = SmsManager.getDefault();
                 smsManager.sendTextMessage(phoneNum, null, sms, null, null);
+
+                Toast.makeText(MapsActivity.this, "Request sent", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -106,6 +112,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                 SmsManager smsManager = SmsManager.getDefault();
                 smsManager.sendTextMessage(phoneNum, null, sms, null, null);
+
+                Toast.makeText(MapsActivity.this, "Request sent", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -117,7 +125,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         currLoc = new LatLng(20.5937, 78.9629);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currLoc, zoom));
 
-        initDetail();
+//        initDetail();
         updateDetail();
     }
 
@@ -128,9 +136,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currLoc, zoom));
     }
 
-    public void initDetail(){
+    /*public void initDetail(){
+        Log.i(TAG, "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference mDatabase = firebaseDatabase.getReference("data");
+        DatabaseReference mDatabase = firebaseDatabase.getReference("user1/data");
+        Log.i(TAG, mDatabase.toString());
         mDatabase.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -138,7 +148,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 currLat = (Double)dataSnapshot.child("Lat").getValue();
                 currLng = (Double)dataSnapshot.child("Lng").getValue();
                 temperature = dataSnapshot.child("Temp").getValue().toString();
-                goToCurrLatLng(currLat, currLng);
+                goToCurrLatLng(21.351, 72.851);
+                showCurrData();
             }
 
             @Override
@@ -161,12 +172,28 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             }
         });
-    }
+    }*/
 
     private void updateDetail() {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference mDatabase = firebaseDatabase.getReference("data");
-        mDatabase.addChildEventListener(new ChildEventListener() {
+        DatabaseReference mDatabase = firebaseDatabase.getReference("user1/data");
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                bpm = dataSnapshot.child("Bpm").getValue().toString();
+                currLat = (Double) dataSnapshot.child("Lat").getValue();
+                currLng = (Double) dataSnapshot.child("Lng").getValue();
+                temperature = dataSnapshot.child("Temp").getValue().toString();
+                goToCurrLatLng(currLat, currLng);
+                showCurrData();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        /*mDatabase.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
@@ -175,6 +202,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                Log.i(TAG, "000000000000000000000000000000000000000000000");
                 bpm = dataSnapshot.child("Bpm").getValue().toString();
                 currLat = (Double) dataSnapshot.child("Lat").getValue();
                 currLng = (Double) dataSnapshot.child("Lng").getValue();
@@ -197,16 +225,29 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        });*/
     }
 
-    public void showCurrData() {
+    private void showCurrData() {
 
         SimpleDateFormat formatter= new SimpleDateFormat("HH:mm");
         Date date = new Date(System.currentTimeMillis());
 
         preTime = formatter.format(date).toString();
         Log.i(TAG, "time is: " +  preTime);
+        Log.i(TAG, temperature);
+        Log.i(TAG, bpm);
+
+        if ((Double.parseDouble(temperature) > 37) || (Double.parseDouble(bpm) > 90) || (Double.parseDouble(bpm) == 0)) {
+            health = 0;
+        }
+
+        if (health == 1) {
+            lastHealth.setText("Healthy");
+        }
+        else {
+            lastHealth.setText("Unhealthy");
+        }
         lastUpdated.setText(preTime);
         lastBpm.setText(bpm);
         lastTemp.setText(temperature);

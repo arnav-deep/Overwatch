@@ -30,7 +30,7 @@ public class MyReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("data");
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("user1/data");
 
         Log.i(TAG, "Intent Received: " + intent.getAction());
         if (Objects.equals(intent.getAction(), SMS_RECEIVED)) {
@@ -52,7 +52,7 @@ public class MyReceiver extends BroadcastReceiver {
                     phoneNo = message[i].getOriginatingAddress();
                 }
 
-                if (/*phoneNo.equals("+917785959692")*/true) {
+                if (phoneNo.equals("+917785959692")) {
                     Toast.makeText(context, "Message: " + msg + "\n Number: " + phoneNo, Toast.LENGTH_LONG).show();
 
                     List<String> allData = Arrays.asList(msg.split(" ", 3));

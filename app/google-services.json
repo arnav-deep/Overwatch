@@ -37,18 +37,18 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:314511223383:android:38e0e087d91cd3472d5112",
+        "mobilesdk_app_id": "1:314511223383:android:1bf73f886fddd1fd2d5112",
         "android_client_info": {
-          "package_name": "com.throwntech.staysafe"
+          "package_name": "com.throwntech.smsdatabase"
         }
       },
       "oauth_client": [
         {
-          "client_id": "314511223383-gor142qlqsqqe5l6vurhnv0obfonjek1.apps.googleusercontent.com",
+          "client_id": "314511223383-hpba685j5c9ju48aqs1bde9lhrc93cc0.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.throwntech.staysafe",
-            "certificate_hash": "72a317724275eff892eef7cce6a920e9291cd9ab"
+            "package_name": "com.throwntech.smsdatabase",
+            "certificate_hash": "2a0654041e57b492be22630d10913fbd76f0b054"
           }
         },
         {
