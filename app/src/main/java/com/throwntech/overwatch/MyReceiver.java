@@ -52,7 +52,7 @@ public class MyReceiver extends BroadcastReceiver {
                     phoneNo = message[i].getOriginatingAddress();
                 }
 
-                if (phoneNo.equals("+917785959692")) {
+                if (phoneNo.equals("+918003293018")) {
                     Toast.makeText(context, "Message: " + msg + "\n Number: " + phoneNo, Toast.LENGTH_LONG).show();
 
                     List<String> allData = Arrays.asList(msg.split(" ", 3));

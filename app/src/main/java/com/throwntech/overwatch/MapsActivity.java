@@ -10,11 +10,14 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -85,15 +88,19 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 //        initDetail();
         updateDetail();
-        showCurrData();
+//        showCurrData();
 
         sos = findViewById(R.id.sos_button);
 
         sos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                final Animation myAnim = AnimationUtils.loadAnimation(MapsActivity.this, R.anim.bounce);
+                sos.startAnimation(myAnim);
+
                 String sms = "sos";
-                String phoneNum = "+919664624488";
+                String phoneNum = "+918003293018";
 
                 SmsManager smsManager = SmsManager.getDefault();
                 smsManager.sendTextMessage(phoneNum, null, sms, null, null);
@@ -107,8 +114,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         getData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                final Animation myAnim = AnimationUtils.loadAnimation(MapsActivity.this, R.anim.bounce);
+                getData.startAnimation(myAnim);
+
                 String sms = "update";
-                String phoneNum = "+919664624488";
+                String phoneNum = "+918003293018";
 
                 SmsManager smsManager = SmsManager.getDefault();
                 smsManager.sendTextMessage(phoneNum, null, sms, null, null);
@@ -238,14 +249,19 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         Log.i(TAG, temperature);
         Log.i(TAG, bpm);
 
-        if ((Double.parseDouble(temperature) > 37) || (Double.parseDouble(bpm) > 90) || (Double.parseDouble(bpm) == 0)) {
+        if ((Double.parseDouble(temperature) > 38) || (Double.parseDouble(bpm) > 90) || (Double.parseDouble(bpm) == 0)) {
             health = 0;
+        }
+        else {
+            health = 1;
         }
 
         if (health == 1) {
             lastHealth.setText("Healthy");
+            lastHealth.setTextColor(Color.parseColor("#39ff14"));
         }
         else {
+            lastHealth.setTextColor(Color.parseColor("#cc3b39"));
             lastHealth.setText("Unhealthy");
         }
         lastUpdated.setText(preTime);

@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -17,68 +16,63 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="105dp"
+        android:layout_height="140dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="100dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
+        android:layout_marginBottom="90dp"
+        app:cardBackgroundColor="#195974"
         app:cardCornerRadius="4dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="5dp">
-
-            <TextView
-                android:id="@+id/heading"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textColor="#4F5C9B"
-                android:textSize="22sp"
-                android:gravity="center_horizontal" />
+            android:layout_marginTop="5dp"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/heading"
-                android:paddingTop="30dp"
                 android:orientation="horizontal"
-                android:weightSum="10">
+                android:paddingTop="30dp"
+                android:weightSum="15">
 
                 <TextView
                     android:id="@+id/bpm"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:layout_weight="3.33"
-                    android:textAlignment="center"
-                    android:textSize="13sp"
+                    android:layout_weight="5"
+                    android:gravity="center_horizontal"
                     android:text="@string/heart_rate"
-                    android:gravity="center_horizontal" />
+                    android:textAlignment="center"
+                    android:textColor="#ffffff"
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/Temp"
                     android:layout_width="0dp"
-                    android:layout_weight="3.33"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:textAlignment="center"
-                    android:textSize="13sp"
+                    android:layout_weight="5"
+                    android:gravity="center_horizontal"
                     android:text="@string/temperature"
-                    android:gravity="center_horizontal" />
+                    android:textAlignment="center"
+                    android:textColor="#ffffff"
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/Updated"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:layout_weight="3.33"
-                    android:textAlignment="center"
-                    android:textSize="13sp"
+                    android:layout_weight="5"
+                    android:gravity="center_horizontal"
                     android:text="@string/last_updated"
-                    android:gravity="center_horizontal" />
+                    android:textAlignment="center"
+                    android:textColor="#ffffff"
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -86,41 +80,50 @@
                 android:layout_height="match_parent"
                 android:layout_below="@id/heading"
                 android:orientation="horizontal"
-                android:weightSum="10">
+                android:weightSum="15">
 
                 <TextView
                     android:id="@+id/last_bpm"
                     android:layout_width="0dp"
-                    android:layout_weight="3.33"
-                    android:layout_height="29dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="5"
+                    android:gravity="center_horizontal"
+                    android:text=""
                     android:textAlignment="center"
-                    android:textSize="16sp"
-                    android:text="."
-                    android:gravity="center_horizontal" />
+                    android:textColor="#ffffff"
+                    android:textSize="28sp" />
 
                 <TextView
                     android:id="@+id/last_temp"
                     android:layout_width="0dp"
-                    android:layout_weight="3.33"
-                    android:layout_height="29dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="5"
+                    android:gravity="center_horizontal"
+                    android:text=""
+                    android:textColor="#ffffff"
                     android:textAlignment="center"
-                    android:textSize="16sp"
-                    android:text="."
-                    android:gravity="center_horizontal" />
+                    android:textSize="28sp" />
 
                 <TextView
                     android:id="@+id/last_updated"
                     android:layout_width="0dp"
-                    android:layout_weight="3.33"
-                    android:layout_height="29dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="5"
+                    android:text=""
                     android:textAlignment="center"
-                    android:textSize="16sp"
-                    android:text="."
+                    android:textColor="#ffffff"
+                    android:textSize="28sp"
                     android:gravity="center_horizontal" />
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/heading"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_horizontal"
+                android:textColor="#ffffff"
+                android:textAlignment="center"
+                android:textSize="25sp" />
 
         </RelativeLayout>
 
@@ -128,7 +131,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="visible">
 
         <Button
             android:id="@+id/sos_button"
@@ -138,7 +142,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="50sp"
-            android:layout_marginBottom="50sp"
+            android:layout_marginStart="50sp"
+            android:layout_marginBottom="40sp"
             android:background="#03BBBB"
             android:text="@string/sos" />
 
@@ -150,7 +155,8 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_marginRight="50sp"
-            android:layout_marginBottom="50sp"
+            android:layout_marginEnd="50sp"
+            android:layout_marginBottom="40sp"
             android:background="#03BBBB"
             android:text="@string/details" />
 
